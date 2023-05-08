@@ -1,0 +1,102 @@
+{
+  "registerUsers": [
+    {
+      "id": 1,
+      "username": "",
+      "email": "",
+      "password": "",
+      "repeatPassword": ""
+    },
+    {
+      "username": "PaulinaKaczo",
+      "email": "a@w",
+      "password": "a",
+      "repeatPassword": "a",
+      "id": 2
+    },
+    {
+      "username": "PaulinaKaczo",
+      "email": "a@w",
+      "password": "a",
+      "repeatPassword": "a",
+      "id": 3
+    },
+    {
+      "username": "PaulinaKaczo",
+      "email": "a@w",
+      "password": "a",
+      "repeatPassword": "a",
+      "id": 4
+    },
+    {
+      "username": "PaulinaKaczo",
+      "email": "a@w",
+      "password": "a",
+      "repeatPassword": "a",
+      "id": 5
+    },
+    {
+      "username": "PaulinaKaczo",
+      "email": "paulina@wp.pl",
+      "password": "aaaaa",
+      "repeatPassword": "ssddd",
+      "id": 6
+    },
+    {
+      "username": "PaulinaKaczo",
+      "email": "p-cioch@wp.pl",
+      "password": "a",
+      "repeatPassword": "a",
+      "id": 7
+    },
+    {
+      "username": "PaulinaKaczo",
+      "email": "p-cioch@wp.pl",
+      "password": "aaaaa",
+      "repeatPassword": "aaq",
+      "id": 8
+    },
+    {
+      "username": "PaulinaKaczo",
+      "email": "p-cioch@wp.pl",
+      "password": "aaaaa",
+      "repeatPassword": "aaq",
+      "id": 9
+    },
+    {
+      "username": "PaulinaKaczo",
+      "email": "p-cioch@wp.pl",
+      "password": "aaaaa",
+      "repeatPassword": "aaq",
+      "id": 10
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "repeatPassword": "",
+      "id": 11
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "repeatPassword": "",
+      "id": 12
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "repeatPassword": "",
+      "id": 13
+    },
+    {
+      "username": "",
+      "email": "",
+      "password": "",
+      "repeatPassword": "",
+      "id": 14
+    }
+  ]
+}

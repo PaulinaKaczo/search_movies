@@ -1,33 +1,42 @@
 import './App.css'
 import SearchMovies from "../components/SearchMovies.jsx";
-import LoginForm from "../components/LoginForm.jsx";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import LoginOrRegisterForm from "../components/LoginOrRegisterForm.jsx";
+import MovieDetails from "../components/MovieDetails.jsx";
+import TvDetails from "../components/TvDetails.jsx";
 
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <LoginForm/>
+        element: <LoginOrRegisterForm/>
     },
     {
-        path: "/search",
+        path: "/home",
         element: <SearchMovies/>
     },
+    {
+        path: "/movies/:movieId",
+        element: <MovieDetails/>
+    },
+    {
+        path: "/tv_series/:tvId",
+        element: <TvDetails/>
+    }
     // {
-    //     path: "/selected_movies",
-    //     element: <SelectedMovies/>
+    //     path: "/search2/:cat",
+    //     element: <SearchWParams/>
     // },
-    // {
-    //     path: "/selected_movies/:movieId",
-    //     element: <ChooseMovie/>
-    // }
+
+
 ]);
 
 function App() {
 
     return (
         <>
+
             <div className="App">
                 <RouterProvider router={router}/>
             </div>
