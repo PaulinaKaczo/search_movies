@@ -1,5 +1,6 @@
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import FavouritesList from "./FavouritesList.jsx";
 
 
 function TvDetails() {
@@ -23,7 +24,7 @@ function TvDetails() {
 
         <div className="movie_details">
             <div className="image-container">
-            <img src={`https://image.tmdb.org/t/p/w500${tv.poster_path}`} alt={tv.title}/>
+            <img src={`https://image.tmdb.org/t/p/w400${tv.poster_path}`} alt={tv.title}/>
         </div>
             <div>
                 <h2>{tv.title}</h2>
@@ -31,7 +32,6 @@ function TvDetails() {
                 <p>{`Average: ${tv.vote_average} (${tv.vote_count} votes)`}</p>
             </div>
 
-            <button>Add to fovourite</button>
         </div>
     );
 

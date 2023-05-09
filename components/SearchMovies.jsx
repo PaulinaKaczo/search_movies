@@ -4,11 +4,12 @@ import {Button, InputLabel, NativeSelect} from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import ChangePages from "./ChangePages.jsx";
 import {Link} from  "react-router-dom";
+import FavouritesList from "./FavouritesList.jsx";
 
 function SearchMovies() {
 
     const categoriesList = ['movie', 'tv'];
-    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState('');
 
     const [genresMovie, setGenresMovie] = useState([]);
     const [genresTV, setGenresTV] = useState([]);
@@ -21,7 +22,8 @@ function SearchMovies() {
 
     const [page, setPage] = useState(1);
 
-
+    const [favouritesMovie, setFavouritesMovie] = useState([]);
+    const [favouritesTV, setFavouritesTV] = useState([]);
 
 //Lista gatunków filmów
     useEffect(() => {
@@ -76,8 +78,18 @@ function SearchMovies() {
     }, [page]);
 
 
+
+    const handleAddToFavouritesMovie = (movie) => {
+            setFavouritesMovie((prevFavouritesMovie) => [...prevFavouritesMovie, movie]);
+        };
+
+    const handleAddToFavouritesTV = (tv) => {
+        setFavouritesTV((prevFavouritesTV) => [...prevFavouritesTV, tv]);
+    };
     return (
+
         <div className="box">
+
             <Header/>
             <div className='form_search_box'>
                 <form className='form_search'
@@ -157,6 +169,7 @@ function SearchMovies() {
                                 <Grid xs={2} sm={4} md={4} key={movie.id}>
                                     <Link to={`/movies/${movie.id}`}> <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.title} /></Link>
                                     <h3>{movie.title}</h3>
+                                    <button onClick={() => handleAddToFavouritesMovie(movie)}>Add to favourites</button>
                                 </Grid>
                             ))}
                         </Grid>
@@ -171,6 +184,7 @@ function SearchMovies() {
                                 <Grid xs={2} sm={4} md={4} key={tv.id}>
                                     <Link to={`/tv_series/${tv.id}`}> <img src={`https://image.tmdb.org/t/p/w200/${tv.poster_path}`} alt={tv.name} /> </Link>
                                     <h3>{tv.name}</h3>
+                                    <button onClick={() => handleAddToFavouritesTV(tv)}>Add to favourites</button>
                                 </Grid>
                             ))}
                         </Grid>
@@ -178,6 +192,27 @@ function SearchMovies() {
                     ))}
             </div>
             <ChangePages page={page} setPage={setPage} movies={movies} tvs={tvs}/>
+             <div>
+            <p>Favourite Movies: </p>
+            <ul>
+                {favouritesMovie.map((favouriteMovie) => (
+                    <li key={favouriteMovie.id}>
+                        {favouriteMovie.title}
+                    </li>
+                ))}
+            </ul>
+
+                 <p>Favourite TV Series: </p>
+                 <ul>
+                     {favouritesTV.map((favouriteTV) => (
+                         <li key={favouriteTV.id}>
+                             {favouriteTV.name}
+                         </li>
+                     ))}
+                 </ul>
+        </div>
+
+
         </div>
     )
 }

@@ -4,6 +4,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import LoginOrRegisterForm from "../components/LoginOrRegisterForm.jsx";
 import MovieDetails from "../components/MovieDetails.jsx";
 import TvDetails from "../components/TvDetails.jsx";
+import FavouritesList from "../components/FavouritesList.jsx";
 
 
 
@@ -23,7 +24,9 @@ const router = createBrowserRouter([
     {
         path: "/tv_series/:tvId",
         element: <TvDetails/>
-    }
+    },
+
+
     // {
     //     path: "/search2/:cat",
     //     element: <SearchWParams/>
@@ -39,6 +42,7 @@ function App() {
 
             <div className="App">
                 <RouterProvider router={router}/>
+                {/*<FavouritesList/>*/}
             </div>
         </>
     )
