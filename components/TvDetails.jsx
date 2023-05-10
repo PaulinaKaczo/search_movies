@@ -1,5 +1,6 @@
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
 
 
 function TvDetails() {
@@ -21,14 +22,15 @@ function TvDetails() {
 
     return (
 
-        <div className="movie_details">
+        <div className="details">
             <div className="image-container">
             <img src={`https://image.tmdb.org/t/p/w400${tv.poster_path}`} alt={tv.title}/>
         </div>
-            <div>
-                <h2>{tv.title}</h2>
+            <div className='description'>
+                <h2>{tv.name}</h2>
                 <p>{tv.overview}</p>
-                <p>{`Average: ${tv.vote_average} (${tv.vote_count} votes)`}</p>
+                <p className='average_note'><strong>Average: </strong> {tv.vote_average}<FontAwesomeIcon className="star_icon" icon={faStar}/></p>
+                <p className='votes'>{`(${tv.vote_count} votes)`}</p>
             </div>
 
         </div>

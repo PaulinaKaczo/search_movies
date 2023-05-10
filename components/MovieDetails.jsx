@@ -1,5 +1,7 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function MovieDetails() {
   const { movieId } = useParams();
@@ -18,19 +20,18 @@ function MovieDetails() {
   }, [movieId]);
 
   return (
-    <div className="movie_details">
+    <div className="details">
       <div className="image-container">
         <img
           src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`}
           alt={movie.title}
         />
       </div>
-      <div>
+      <div className='description'>
         <h2>{movie.title}</h2>
         <p>{movie.overview}</p>
-
-        {/*})}</p>*/}
-        <p>{`Average: ${movie.vote_average} (${movie.vote_count} votes)`}</p>
+        <p className='average_note'><strong>Average: </strong>{movie.vote_average} <FontAwesomeIcon className="star_icon" icon={faStar} /> </p>
+        <p className='votes'>{`(${movie.vote_count} votes)`}</p>
       </div>
     </div>
   );

@@ -1,0 +1,43 @@
+.details {
+  margin: 40px;
+  max-height: 100vh;
+  display: flex;
+  gap: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 10px 10px 20px grey;
+  border-radius: 5px;
+}
+
+ .description h2{
+    font-size: 4rem;
+  }
+
+.description p{
+  font-size: 1.5rem;
+  width: 600px;
+}
+
+p.average_note {
+  font-size: 1.5rem;
+  display: inline;
+}
+
+.star_icon {
+  color: #f6bf0a;
+  font-size: 1.4rem;
+}
+
+p.votes {
+  display: inline;
+  font-size: 1rem;
+}
+
+   .image-container {
+     padding: 30px;
+
+     & img {
+       box-shadow: 15px 15px 20px grey;
+       border-radius: 5px;
+     }
+   }
+
