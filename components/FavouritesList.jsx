@@ -1,18 +1,25 @@
-import {useState} from "react";
+import React from "react";
 
-function FavouritesList() {
+function FavouritesList({favouritesMovie, favouritesTV}) {
 
-
-    // const handleAddToFavourites = (movie, tv) => {
-    //     if (selectedCategories === "movie") {
-    //         setFavourites((prevFavourites) => [...prevFavourites, movie]);
-    //     } else if (selectedCategories === "tv") {
-    //         setFavourites((prevFavourites) => [...prevFavourites, tv]);
-    //     }
-    // };
 
     return (
-       <div>a</div>
+        // (!favouritesMovie.length || !favouritesTV.length) ? '' :
+            <div className='favourites_box'>
+            <p>Favourite Movies: </p>
+            <ul>
+                {favouritesMovie.map(({id, title}) => (
+                    <li key={id}> { title } </li>
+                ))}
+            </ul>
+
+            <p>Favourite TV Series: </p>
+            <ul>
+                {favouritesTV.map(({id, name}) => (
+                    <li key={id}> { name } </li>
+                ))}
+            </ul>
+        </div>
     );
 }
 
