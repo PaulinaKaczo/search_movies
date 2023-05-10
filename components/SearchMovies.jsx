@@ -1,220 +1,208 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header.jsx";
-import {Button, InputLabel, NativeSelect} from "@mui/material";
-import Grid from '@mui/material/Unstable_Grid2';
+import {Button, FormControl, InputLabel, MenuItem, NativeSelect, Select} from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import ChangePages from "./ChangePages.jsx";
-import {Link} from  "react-router-dom";
+import { Link } from "react-router-dom";
 import FavouritesList from "./FavouritesList.jsx";
+import MoviesOrTVsList from "./MoviesOrTVsList.jsx";
 
 function SearchMovies() {
+  const categoriesList = ["movie", "tv"];
+  const [selectedCategories, setSelectedCategories] = useState("");
 
-    const categoriesList = ['movie', 'tv'];
-    const [selectedCategories, setSelectedCategories] = useState('');
+  const [genresMovie, setGenresMovie] = useState([]);
+  const [genresTV, setGenresTV] = useState([]);
 
-    const [genresMovie, setGenresMovie] = useState([]);
-    const [genresTV, setGenresTV] = useState([]);
+  const [selectedGenreMovie, setSelectedGenreMovie] = useState("");
+  const [selectedGenreTV, setSelectedGenreTV] = useState("");
 
-    const [selectedGenreMovie, setSelectedGenreMovie] = useState('');
-    const [selectedGenreTV, setSelectedGenreTV] = useState('');
+  const [movies, setMovies] = useState([]);
+  const [tvs, setTvs] = useState([]);
 
-    const [movies, setMovies] = useState([]);
-    const [tvs, setTvs] = useState([]);
+  const [page, setPage] = useState(1);
 
-    const [page, setPage] = useState(1);
+  const [favouritesMovie, setFavouritesMovie] = useState([]);
+  const [favouritesTV, setFavouritesTV] = useState([]);
 
-    const [favouritesMovie, setFavouritesMovie] = useState([]);
-    const [favouritesTV, setFavouritesTV] = useState([]);
+    const [selectedIds, setSelectedIds] = useState([]);
 
-//Lista gatunków filmów
-    useEffect(() => {
-            async function fetchGenreMovies() {
-                const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=c6ad547b3b1a0402c59a8ca2800e8e97');
-                const data = await response.json();
-                setGenresMovie(data.genres)
+  //Lista gatunków filmów
+  useEffect(() => {
+    async function fetchGenreMovies() {
+      const response = await fetch(
+        "https://api.themoviedb.org/3/genre/movie/list?api_key=c6ad547b3b1a0402c59a8ca2800e8e97"
+      );
+      const data = await response.json();
+      setGenresMovie(data.genres);
+    }
+
+    fetchGenreMovies();
+  }, []);
+
+  //Lista gatunków TV series
+  useEffect(() => {
+    async function fetchGenreTV() {
+      const response = await fetch(
+        "https://api.themoviedb.org/3/genre/tv/list?api_key=c6ad547b3b1a0402c59a8ca2800e8e97"
+      );
+      const data = await response.json();
+      setGenresTV(data.genres);
+    }
+
+    fetchGenreTV();
+  }, []);
+
+  const handleSearch = (type, genre) => {
+    if (genre) {
+      fetch(
+          `https://api.themoviedb.org/3/discover/${type}?api_key=c6ad547b3b1a0402c59a8ca2800e8e97&page=${page}&with_genres=${genre}`
+      )
+          .then((response) => response.json())
+          .then((data) => {
+            if (type === "movie") {
+              setMovies(data.results);
+            } else {
+              setTvs(data.results);
             }
-
-            fetchGenreMovies();
-        }
-, []);
-
-//Lista gatunków TV series
-    useEffect(() => {
-        async function fetchGenreTV() {
-            const response = await fetch('https://api.themoviedb.org/3/genre/tv/list?api_key=c6ad547b3b1a0402c59a8ca2800e8e97');
-            const data = await response.json();
-            setGenresTV(data.genres);
-        }
-
-        fetchGenreTV();
-    }, []);
-
-
-
-
-    const handleSearchMovie = () => {
-
-        if (selectedGenreMovie) {
-            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=c6ad547b3b1a0402c59a8ca2800e8e97&page=${page}&with_genres=${selectedGenreMovie}`)
-                .then(response => response.json())
-                .then(data => setMovies(data.results));
-        }
+          });
     }
+  };
 
-    const handleSearchTV = () => {
+  useEffect(() => {
 
-        if (selectedGenreTV) {
-            fetch(`https://api.themoviedb.org/3/discover/tv?api_key=c6ad547b3b1a0402c59a8ca2800e8e97&page=${page}&with_genres=${selectedGenreTV}`)
-                .then(response => response.json())
-                .then(data => setTvs(data.results));
-        }
+      handleSearch("movie");
+
+  }, [page]);
+
+  useEffect(() => {
+
+      handleSearch("tv");
+
+  }, [page]);
+
+
+
+  const handleAddToFavourites = (favouriteList, item, setter) => {
+    if (!favouriteList.includes(item)) {
+        setter((prevFavourites) => [...prevFavourites, item]);
+        setSelectedIds((prevIds) => [...prevIds, item.id]);
     }
+  };
 
-    useEffect(() => {
-        handleSearchMovie();
-    }, [page]);
+  //sprawdza, czy dany element jest zaznaczony jako ulubiony
+    const isLiked = (id) => selectedIds.includes(id);
 
-    useEffect(() => {
-        handleSearchTV();
-    }, [page]);
-
-
-
-    const handleAddToFavouritesMovie = (movie) => {
-            setFavouritesMovie((prevFavouritesMovie) => [...prevFavouritesMovie, movie]);
-        };
-
-    const handleAddToFavouritesTV = (tv) => {
-        setFavouritesTV((prevFavouritesTV) => [...prevFavouritesTV, tv]);
+//funkcja handleSelect zmienia stan zaznaczenia elementu na przeciwny po kliknięciu przycisku.
+    const handleSelect = (id) => {
+        if (isLiked(id)) {
+            setSelectedIds((prevIds) => prevIds.filter((f) => f !== id));
+        } else {
+            setSelectedIds((prevIds) => [...prevIds, id]);
+        }
     };
-    return (
 
-        <div className="box">
+  return (
+    <div className="container">
+      <FavouritesList
+        favouritesMovie={favouritesMovie}
+        favouritesTV={favouritesTV}
+      />
+        <div className='search_box'>
+      <Header />
+      <div className="search_box--form">
+          <form
+          className="form_search"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel id="demo-simple-select-standard-label">
+            Category
+          </InputLabel>
+          <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+            // id="category"
+            value={selectedCategories}
+            onChange={(e) => setSelectedCategories(e.target.value)}
+              label="Category"
+          >
+            <option value="">---</option>
 
-            <Header/>
-            <div className='form_search_box'>
-                <form className='form_search'
-                    onSubmit={(e) => {
-                        e.preventDefault();
+            {categoriesList.map((category) => (
+              <MenuItem value={category} key={category}>
+                {category}
+              </MenuItem>
+            ))}
+          </Select>
+                  </FormControl>
+              <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="demo-simple-select-standard-label">
+            Genre
+          </InputLabel>
+          <Select
+              labelId="demo-simple-select-standard-label"
+              id="demo-simple-select-standard"
+            value={
+              selectedCategories === "movie"
+                ? selectedGenreMovie
+                : selectedGenreTV
+            }
+            onChange={
+              selectedCategories === "movie"
+                ? (e) => setSelectedGenreMovie(e.target.value)
+                : (e) => setSelectedGenreTV(e.target.value)
+            }
+              label="Choose genre"
+            disabled={!genresMovie.length || !genresTV.length}
+          >
+            <option value="">---</option>
 
-                    }}
-                >
-                    <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                        Category
-                    </InputLabel>
-                    <NativeSelect
-                        defaultValue={''}
-                        inputProps={{
-                            name: 'category',
-                            id: 'category',
-                        }}
-                        // id="category"
-                        value={selectedCategories}
-                        onChange={(e) => setSelectedCategories(e.target.value)}
-                    >
-                        <option value="">---</option>
-
-                        {categoriesList.map((category) => (
-                            <option value={category} key={category}>
-                                {category}
-                            </option>
-                        ))}
-
-                    </NativeSelect>
-                    <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                        Genre
-                    </InputLabel>
-                    <NativeSelect
-                        defaultValue={''}
-                        inputProps={{
-                            name: 'genre',
-                            id: 'genre',
-                        }}
-
-                        value={(selectedCategories === 'movie') ? selectedGenreMovie : selectedGenreTV}
-                        onChange={(selectedCategories === 'movie') ? ((e) => setSelectedGenreMovie(e.target.value)) : ((e) => setSelectedGenreTV(e.target.value))}
-                        disabled={!genresMovie.length || !genresTV.length}
-                    >
-                        <option value="">{"-Choose genre-"}</option>
-
-
-                        {(selectedCategories === "movie") ? (genresMovie.map((genreMovie) => (
-                        <option value={genreMovie.id} key={genreMovie.id}>
-                            {genreMovie.name}
-                        </option>
-                    )))
-                        :
-                        (genresTV.map((genreTV) => (
-                                        <option value={genreTV.id} key={genreTV.id}>
-                                            {genreTV.name}
-                                        </option>
-                         )))}
-
-
-
-                    </NativeSelect>
-
-                    <Button variant="outlined" size="small"
-                        onClick={(selectedCategories === "movie") ? (handleSearchMovie) : (handleSearchTV)}
-                    >
-                        SEARCH
-                    </Button>
-                </form>
-            </div>
-            <div className="selected_box">
-                {(selectedCategories === 'movie') ? (movies.length > 0 && (
-                    <div >
-                        <h2>Movies</h2>
-                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                            {movies.map((movie) => (
-                                <Grid xs={2} sm={4} md={4} key={movie.id}>
-                                    <Link to={`/movies/${movie.id}`}> <img src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`} alt={movie.title} /></Link>
-                                    <h3>{movie.title}</h3>
-                                    <button onClick={() => handleAddToFavouritesMovie(movie)}>Add to favourites</button>
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </div>
-                )
-                 ) :
-                    ( tvs.length > 0 && (
-                    <div >
-                        <h2>TV Series</h2>
-                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                            {tvs.map((tv) => (
-                                <Grid xs={2} sm={4} md={4} key={tv.id}>
-                                    <Link to={`/tv_series/${tv.id}`}> <img src={`https://image.tmdb.org/t/p/w200/${tv.poster_path}`} alt={tv.name} /> </Link>
-                                    <h3>{tv.name}</h3>
-                                    <button onClick={() => handleAddToFavouritesTV(tv)}>Add to favourites</button>
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </div>
-                    ))}
-            </div>
-            <ChangePages page={page} setPage={setPage} movies={movies} tvs={tvs}/>
-             <div>
-            <p>Favourite Movies: </p>
-            <ul>
-                {favouritesMovie.map((favouriteMovie) => (
-                    <li key={favouriteMovie.id}>
-                        {favouriteMovie.title}
-                    </li>
+            {selectedCategories === "movie"
+              ? genresMovie.map((genreMovie) => (
+                  <MenuItem value={genreMovie.id} key={genreMovie.id}>
+                    {genreMovie.name}
+                  </MenuItem>
+                ))
+              : genresTV.map((genreTV) => (
+                  <MenuItem value={genreTV.id} key={genreTV.id}>
+                    {genreTV.name}
+                  </MenuItem>
                 ))}
-            </ul>
+          </Select>
 
-                 <p>Favourite TV Series: </p>
-                 <ul>
-                     {favouritesTV.map((favouriteTV) => (
-                         <li key={favouriteTV.id}>
-                             {favouriteTV.name}
-                         </li>
-                     ))}
-                 </ul>
-        </div>
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={
+              selectedCategories === "movie"
+                ? () => handleSearch("movie", selectedGenreMovie)
+                : () => handleSearch("tv", selectedGenreTV)
+            }
+          >
+            SEARCH
+          </Button>
+              </FormControl>
+          </form>
+      </div>
+      </div>
 
-
-        </div>
-    )
+      <MoviesOrTVsList
+        selectedCategories={selectedCategories}
+        movies={movies}
+        tvs={tvs}
+        handleAddToFavourites={handleAddToFavourites}
+        favouritesMovie={favouritesMovie}
+        setFavouritesMovie={setFavouritesMovie}
+        favouritesTV={favouritesTV}
+        setFavouritesTV={setFavouritesTV}
+        isLiked={isLiked}
+      />
+      <ChangePages page={page} setPage={setPage} movies={movies} tvs={tvs} />
+    </div>
+  );
 }
 
-    export default SearchMovies;
+export default SearchMovies;

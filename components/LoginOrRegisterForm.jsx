@@ -13,14 +13,14 @@ function LoginOrRegisterForm() {
     }
 
     return (
-        <>
+        <div className="login_or_register_box">
         <Header/>
-        <div className="LoginOrRegisterForm">
+        <div className="login_or_register_form">
             {
             currentForm === "login" ? <Login onFormSwitch={toggleForm}/> : <Register onFormSwitch={toggleForm}/>
             }
         </div>
-        </>
+        </div>
     );
 }
 

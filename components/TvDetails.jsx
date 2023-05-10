@@ -1,6 +1,5 @@
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import FavouritesList from "./FavouritesList.jsx";
 
 
 function TvDetails() {
