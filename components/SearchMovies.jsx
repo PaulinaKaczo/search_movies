@@ -53,33 +53,28 @@ function SearchMovies() {
     fetchGenreTV();
   }, []);
 
-  const handleSearch = (type, genre) => {
-    if (genre) {
-      fetch(
-          `https://api.themoviedb.org/3/discover/${type}?api_key=c6ad547b3b1a0402c59a8ca2800e8e97&page=${page}&with_genres=${genre}`
-      )
-          .then((response) => response.json())
-          .then((data) => {
-            if (type === "movie") {
-              setMovies(data.results);
-            } else {
-              setTvs(data.results);
-            }
-          });
+    const handleSearchMovie = () => {
+        if (selectedGenreMovie) {
+            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=c6ad547b3b1a0402c59a8ca2800e8e97&page=${page}&with_genres=${selectedGenreMovie}`)
+                .then(response => response.json())
+                .then(data => setMovies(data.results));
+        }
     }
-  };
+    const handleSearchTV = () => {
+        if (selectedGenreTV) {
+            fetch(`https://api.themoviedb.org/3/discover/tv?api_key=c6ad547b3b1a0402c59a8ca2800e8e97&page=${page}&with_genres=${selectedGenreTV}`)
+                .then(response => response.json())
+                .then(data => setTvs(data.results));
+        }
+    }
+    useEffect(() => {
+        handleSearchMovie();
+    }, [page]);
+    useEffect(() => {
+        handleSearchTV();
+    }, [page]);
 
-  useEffect(() => {
 
-      handleSearch("movie");
-
-  }, [page]);
-
-  useEffect(() => {
-
-      handleSearch("tv");
-
-  }, [page]);
 
 
 
@@ -178,8 +173,8 @@ function SearchMovies() {
             size="small"
             onClick={
               selectedCategories === "movie"
-                ? () => handleSearch("movie", selectedGenreMovie)
-                : () => handleSearch("tv", selectedGenreTV)
+                ? handleSearchMovie
+                : handleSearchTV
             }
           >
             SEARCH

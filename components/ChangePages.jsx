@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowLeft, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+
 
 function ChangePages({page, setPage, movies, tvs}) {
 
@@ -13,10 +15,12 @@ function ChangePages({page, setPage, movies, tvs}) {
     };
 
     return (
-        (movies.length || tvs.length) ? (<div>
-            <p>{`${page} page`}</p>
-            <button onClick={handlePreviousPage} >Previous page</button>
-            <button onClick={handleNextPage}>Next page</button>
+        (movies.length || tvs.length) ? (<div className='change_pages'>
+            <p>{page}</p>
+            <div className='arrow_btn'>
+            <button onClick={handlePreviousPage} ><FontAwesomeIcon icon={faArrowLeft} /></button>
+            <button onClick={handleNextPage}><FontAwesomeIcon icon={faArrowRight} /></button>
+            </div>
         </div>) : ""
     );
 }
