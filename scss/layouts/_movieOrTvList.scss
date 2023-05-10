@@ -1,0 +1,38 @@
+
+
+.selected_box {
+  background-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 10px 10px 20px grey;
+  margin-top: 70px;
+  border-radius: 5px;
+
+
+  & h2 {
+
+    font-family: 'Papyrus', sans-serif;
+    font-size: 4.2em;
+    line-height: 1.1;
+    color: #ffffff;
+    text-align: center;
+    padding-top: 30px;
+  }
+  & h3 {
+
+  }
+}
+
+svg {
+  font-size: 1rem;
+}
+
+.favourite_btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+
+}
+
+
+
+

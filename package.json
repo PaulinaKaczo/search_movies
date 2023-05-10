@@ -14,15 +14,22 @@
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@fontsource/roboto": "^4.5.8",
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.3",
     "@mui/styled-engine-sc": "^5.12.0",
+    "font-awesome-sass": "^4.7.0",
     "json-server": "^0.17.3",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
+    "sass": "^1.62.1",
+    "scss": "^0.2.4",
     "sort-by": "^1.2.0",
     "styled-components": "^5.3.10"
   },
@@ -34,6 +41,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "prettier": "^2.8.8",
     "vite": "^4.3.2"
   }
 }

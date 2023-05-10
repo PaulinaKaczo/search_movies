@@ -1,0 +1,24 @@
+.favourites_box {
+  background-color: rgba(236, 245, 240, 0.45);
+  max-width: 500px;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  border: 5px dotted  lightblue;
+
+ & p {
+    font-size: 20px;
+    text-decoration: underline;
+  }
+ }
+
+
+
+  //&:after {
+  //  content: '';
+  //  display: block;
+  //  width: 50px;
+  //  height: 50px;
+  //  background-color: black;
+  //
+  //}

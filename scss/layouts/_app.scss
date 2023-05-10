@@ -1,0 +1,33 @@
+//#root {
+//  margin: 0;
+//}
+.App {
+  max-width: 1500px;
+  margin: 0 auto;
+  max-height: 100vh;
+  //display: flex;
+  //justify-content: end;
+
+
+  @media only screen and (max-width: 1000px) {
+    justify-content: center;
+  }
+
+}
+
+.container {
+  //max-width: 700px;
+  //display: flex;
+
+
+}
+body {
+  background-image: url("../images/main_photo.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+
+}
