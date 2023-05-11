@@ -1,6 +1,8 @@
 import {useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {faStar} from "@fortawesome/free-solid-svg-icons";
+import AddOpinion from "./AddOpinion.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 function TvDetails() {
@@ -31,6 +33,7 @@ function TvDetails() {
                 <p>{tv.overview}</p>
                 <p className='average_note'><strong>Average: </strong> {tv.vote_average}<FontAwesomeIcon className="star_icon" icon={faStar}/></p>
                 <p className='votes'>{`(${tv.vote_count} votes)`}</p>
+                <AddOpinion/>
             </div>
 
         </div>
