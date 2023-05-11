@@ -1,35 +1,30 @@
-
 .login_or_register_box {
   padding-right: 60px;
 }
 
 .login_or_register_form {
-
   display: flex;
   justify-content: end;
   padding-right: 50px;
 
-
- & form {
-   background-color: #faece7;
-   padding: 40px 70px;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   flex-direction: column;
-   border-radius: 5px;
-   box-shadow: rgba(241, 238, 238, 0.45) 0 14px 28px, rgba(236, 226, 226, 0.52) 15px 15px 30px;
-   font-family: 'Bell MT', sans-serif;
-   font-size: 1rem;
-
- }
+  & form {
+    background-color: #faece7;
+    padding: 40px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: rgba(241, 238, 238, 0.45) 0 14px 28px,
+      rgba(236, 226, 226, 0.52) 15px 15px 30px;
+    font-family: "Bell MT", sans-serif;
+    font-size: 1rem;
+  }
 }
 
 @media only screen and (max-width: 610px) {
   .login_or_register_box {
     padding-right: 0;
-
-
   }
   .login_or_register_form {
     justify-content: center;

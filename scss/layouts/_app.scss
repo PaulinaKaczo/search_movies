@@ -1,16 +1,12 @@
-
 .App {
   max-width: 1500px;
   margin: 0 auto;
   max-height: 100vh;
 
-
   @media only screen and (max-width: 1000px) {
     justify-content: center;
   }
-
 }
-
 
 body {
   background-image: url("../images/main_photo.png");
@@ -20,5 +16,4 @@ body {
   flex-direction: column;
   justify-content: center;
   margin: 0;
-
 }

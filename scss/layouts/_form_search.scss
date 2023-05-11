@@ -1,10 +1,8 @@
-
 .search_box {
   padding-right: 60px;
   display: flex;
   flex-direction: column;
   align-items: end;
-
 }
 
 .search_box--form {
@@ -14,10 +12,9 @@
   padding: 40px 70px;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px;
-  font-family: 'Bell MT', sans-serif;
+  font-family: "Bell MT", sans-serif;
   font-size: 1rem;
   margin-right: 40px;
-
 
   & form {
     width: 250px;
@@ -29,13 +26,12 @@
     flex-direction: column;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px, rgba(0, 0, 0, 0.22) 0 10px 10px;
-    font-family: 'Bell MT', sans-serif;
+    font-family: "Bell MT", sans-serif;
     font-size: 1rem;
   }
 }
 
 .form_search {
-
 }
 
 form div {
@@ -43,7 +39,7 @@ form div {
 }
 
 @media only screen and (max-width: 600px) {
-  .search_box{
+  .search_box {
     align-items: center;
     padding-right: 0;
   }
@@ -60,5 +56,4 @@ form div {
       min-width: 140px;
     }
   }
-
 }

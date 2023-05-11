@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import {faStar} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddOpinion from "./AddOpinion.jsx";
 
 function MovieDetails() {
@@ -28,14 +28,17 @@ function MovieDetails() {
           alt={movie.title}
         />
       </div>
-      <div className='description'>
+      <div className="description">
         <h2>{movie.title}</h2>
         <p>{movie.overview}</p>
-        <p className='average_note'><strong>Average: </strong>{movie.vote_average} <FontAwesomeIcon className="star_icon" icon={faStar} /> </p>
-        <p className='votes'>{`(${movie.vote_count} votes)`}</p>
-        <AddOpinion/>
+        <p className="average_note">
+          <strong>Average: </strong>
+          {movie.vote_average}{" "}
+          <FontAwesomeIcon className="star_icon" icon={faStar} />{" "}
+        </p>
+        <p className="votes">{`(${movie.vote_count} votes)`}</p>
+        <AddOpinion />
       </div>
-
     </div>
   );
 }

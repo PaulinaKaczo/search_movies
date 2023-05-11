@@ -9,11 +9,11 @@
   border-radius: 5px;
 }
 
- .description h2{
-    font-size: 4rem;
-  }
+.description h2 {
+  font-size: 4rem;
+}
 
-.description p{
+.description p {
   font-size: 1.3rem;
   width: 600px;
 }
@@ -35,24 +35,23 @@ p.votes {
   width: 100%;
 }
 
-   .image-container {
-     padding: 30px;
+.image-container {
+  padding: 30px;
 
-     & img {
-       box-shadow: 15px 15px 20px grey;
-       border-radius: 5px;
-       width: 100%;
-     }
-   }
+  & img {
+    box-shadow: 15px 15px 20px grey;
+    border-radius: 5px;
+    width: 100%;
+  }
+}
 
 @media only screen and (max-width: 1200px) {
-  .description h2{
+  .description h2 {
     font-size: 3rem;
   }
 
-  .description p{
+  .description p {
     font-size: 1rem;
-
   }
 }
 
@@ -69,7 +68,7 @@ p.votes {
 }
 
 @media only screen and (max-width: 550px) {
-  .description h2{
+  .description h2 {
     font-size: 2rem;
   }
 }
