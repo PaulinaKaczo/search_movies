@@ -1,0 +1,38 @@
+.opinion {
+margin-top: 30px;
+
+}
+
+.btn{
+
+  margin-bottom: 30px;
+  background-color: #63afa8;
+  border: 1px solid #224946;
+
+  &:hover {
+    background-color: #c5c4c4;
+    box-shadow: 7px 7px 10px grey;
+  }
+}
+
+.opinion_btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.add_btn {
+  padding: 5px 20px;
+  border-radius: 15px;
+}
+
+.opinion_form > label {
+  padding-right: 10px;
+}
+
+.opinion_form > input {
+  margin-right: 10px;
+  width: 70px;
+  border: 1px solid #224946;
+  box-shadow: 7px 7px 10px grey;
+  border-radius: 5px;
+}
