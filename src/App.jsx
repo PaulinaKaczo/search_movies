@@ -1,17 +1,12 @@
 import "../scss/main.scss";
 import SearchMovies from "../components/SearchMovies.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LoginOrRegisterForm from "../components/LoginOrRegisterForm.jsx";
 import MovieDetails from "../components/MovieDetails.jsx";
 import TvDetails from "../components/TvDetails.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginOrRegisterForm />,
-  },
-  {
-    path: "/home",
     element: <SearchMovies />,
   },
   {

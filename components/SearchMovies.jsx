@@ -5,10 +5,8 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  NativeSelect,
   Select,
 } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
 import ChangePages from "./ChangePages.jsx";
 import { Link } from "react-router-dom";
 import FavouritesList from "./FavouritesList.jsx";
@@ -36,8 +34,8 @@ function SearchMovies() {
   const [page, setPage] = useState(1);
 
   //przetrzymuje movies/tvs wybrane jako ulubione
-  const [favouritesMovie, setFavouritesMovie] = useState([]);
-  const [favouritesTV, setFavouritesTV] = useState([]);
+  const [favouritesMovie, setFavouritesMovie] = useState(JSON.parse(localStorage.getItem("favouritesMovie")) || []);
+  const [favouritesTV, setFavouritesTV] = useState(JSON.parse(localStorage.getItem("favouritesTV")) || []);
 
   //przetrzymuje ID wybranego filmu/serialu
   const [selectedIds, setSelectedIds] = useState([]);
@@ -102,18 +100,37 @@ function SearchMovies() {
     handleSearchTV();
   }, [page]);
 
-  //dodaje/usuwa filmy/tv z listy ulubionych
+  // //dodaje/usuwa filmy/tv z listy ulubionych
+  //
+  // const handleAddToFavourites = (favouriteList, item, setter) => {
+  //   if (!favouriteList.includes(item)) {
+  //     setter((prevFavourites) => [...prevFavourites, item]);
+  //     setSelectedIds((prevIds) => [...prevIds, item.id]);
+  //   } else {setter((prevFavourites) =>
+  //       prevFavourites.filter((f) => f.id !== item.id)
+  //     );
+  //     setSelectedIds((prevIds) => prevIds.filter((f) => f !== item.id));
+  //   }
+  // };
+
+
+  // dodaje/usuwa filmy/tv z listy ulubionych
   const handleAddToFavourites = (favouriteList, item, setter) => {
-    if (!favouriteList.includes(item)) {
-      setter((prevFavourites) => [...prevFavourites, item]);
+    if (!favouriteList.some((f) => f.id === item.id)) {
+      const updatedFavourites = [...favouriteList, item];
+      setter(updatedFavourites);
       setSelectedIds((prevIds) => [...prevIds, item.id]);
+      localStorage.setItem("favouritesMovie", JSON.stringify(updatedFavourites)) &&
+      localStorage.setItem("favouritesTV", JSON.stringify(updatedFavourites));
     } else {
-      setter((prevFavourites) =>
-        prevFavourites.filter((f) => f.id !== item.id)
-      );
-      setSelectedIds((prevIds) => prevIds.filter((f) => f !== item.id));
+      const updatedFavourites = favouriteList.filter((f) => f.id !== item.id);
+      setter(updatedFavourites);
+      setSelectedIds((prevIds) => prevIds.filter((id) => id !== item.id));
+      localStorage.setItem("favouritesMovie", JSON.stringify(updatedFavourites)) &&
+      localStorage.setItem("favouritesTV", JSON.stringify(updatedFavourites));
     }
   };
+
 
   return (
     <div className="container">
